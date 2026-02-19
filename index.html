@@ -15,7 +15,7 @@
 <!-- SIGNUP -->
 <div class="card" id="signup">
   <h3>Create Account</h3>
-  <input placeholder="Email ID">
+  <input type="email" placeholder="Email ID">
   <input type="password" placeholder="Password">
 
   <select>
@@ -39,7 +39,7 @@
 <!-- LOGIN -->
 <div class="card hide" id="login">
   <h3>Login</h3>
-  <input placeholder="Email ID">
+  <input type="email" placeholder="Email ID">
   <input type="password" placeholder="Password">
   <button onclick="goDashboard()">Login</button>
   <p class="link" onclick="goForgot()">Forgot Password?</p>
@@ -49,7 +49,7 @@
 <!-- FORGOT -->
 <div class="card hide" id="forgot">
   <h3>Reset Password</h3>
-  <input placeholder="Registered Email">
+  <input type="email" placeholder="Registered Email">
   <button onclick="goLogin()">Send Reset Link</button>
   <button class="secondary" onclick="goLogin()">Back</button>
 </div>
