@@ -40,9 +40,8 @@ button{
   cursor:pointer;
 }
 
-button:hover{ background:#1d4ed8; }
-
-.secondary{ background:#64748b; }
+button:hover{background:#1d4ed8;}
+.secondary{background:#64748b;}
 
 .link{
   color:#2563eb;
@@ -64,4 +63,4 @@ button:hover{ background:#1d4ed8; }
   margin-bottom:15px;
 }
 
-.hide{ display:none; }
+.hide{display:none;}
