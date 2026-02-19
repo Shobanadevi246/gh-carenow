@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CareNow GH</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>CareNow GH</h1>
+  <p>Smart Queue-Free Government Hospital System</p>
+</header>
+
+<!-- SIGNUP -->
+<div class="card" id="signup">
+  <h3>Create Account</h3>
+  <input placeholder="Email ID">
+  <input type="password" placeholder="Password">
+
+  <select>
+    <option>Select City</option>
+    <option>Chennai</option>
+    <option>Salem</option>
+    <option>Coimbatore</option>
+  </select>
+
+  <select>
+    <option>Select Nearest Government Hospital</option>
+    <option>GH Chennai</option>
+    <option>GH Salem</option>
+    <option>GH Coimbatore</option>
+  </select>
+
+  <button onclick="goLogin()">Signup</button>
+  <p class="link" onclick="goLogin()">Already have an account? Login</p>
+</div>
+
+<!-- LOGIN -->
+<div class="card hide" id="login">
+  <h3>Login</h3>
+  <input placeholder="Email ID">
+  <input type="password" placeholder="Password">
+  <button onclick="goDashboard()">Login</button>
+  <p class="link" onclick="goForgot()">Forgot Password?</p>
+  <button class="secondary" onclick="goSignup()">Back</button>
+</div>
+
+<!-- FORGOT -->
+<div class="card hide" id="forgot">
+  <h3>Reset Password</h3>
+  <input placeholder="Registered Email">
+  <button onclick="goLogin()">Send Reset Link</button>
+  <button class="secondary" onclick="goLogin()">Back</button>
+</div>
+
+<!-- DASHBOARD -->
+<div class="card hide" id="dashboard">
+  <h3>Hospital Dashboard</h3>
+  <button onclick="openPage('doctorBooking')">Doctor Appointment</button>
+  <button onclick="openPage('scanBooking')">Scan Booking</button>
+  <button onclick="openPage('availability')">Doctors Availability</button>
+  <button onclick="openPage('specialists')">Doctors & Specialists</button>
+  <button class="secondary" onclick="goLogin()">Logout</button>
+</div>
+
+<!-- DOCTOR BOOKING -->
+<div class="card hide" id="doctorBooking">
+  <h3>Doctor Appointment</h3>
+
+  <input placeholder="Patient Name">
+  <input placeholder="Age">
+  <input placeholder="Aadhaar Number">
+  <input placeholder="Mobile Number">
+
+  <select id="healthIssue">
+    <option>Select Health Issue</option>
+    <option>Fever</option>
+    <option>Chest Pain</option>
+    <option>Diabetes</option>
+    <option>Heart Problem</option>
+  </select>
+
+  <label>Appointment Date</label>
+  <input type="date" id="appDate">
+
+  <label class="emg">
+    <input type="checkbox" id="emergency"> Emergency (Today)
+  </label>
+
+  <button onclick="bookDoctor()">Book Appointment</button>
+  <button class="secondary" onclick="goDashboard()">Back</button>
+</div>
+
+<!-- SCAN BOOKING -->
+<div class="card hide" id="scanBooking">
+  <h3>Scan Booking</h3>
+
+  <input placeholder="Patient Name">
+  <input placeholder="Age">
+  <input placeholder="Aadhaar Number">
+  <input placeholder="Mobile Number">
+
+  <select>
+    <option>Select Scan</option>
+    <option>X-Ray</option>
+    <option>CT Scan</option>
+    <option>MRI</option>
+  </select>
+
+  <label>Scan Date</label>
+  <input type="date" id="scanDate">
+
+  <label class="emg">
+    <input type="checkbox" id="scanEmergency"> Emergency (Today)
+  </label>
+
+  <button onclick="bookScan()">Book Scan</button>
+  <button class="secondary" onclick="goDashboard()">Back</button>
+</div>
+
+<!-- AVAILABILITY -->
+<div class="card hide" id="availability">
+  <h3>Doctor Availability (Live)</h3>
+  <p>Dr. Ravi – Available ✅</p>
+  <p>Dr. Meena – Absent ❌ (Auto Re-Slot Enabled)</p>
+  <p>Dr. Kumar – Available ✅</p>
+  <button class="secondary" onclick="goDashboard()">Back</button>
+</div>
+
+<!-- SPECIALISTS -->
+<div class="card hide" id="specialists">
+  <h3>Doctors & Specialists</h3>
+  <p><b>Dr. Ravi</b> – Cardiologist – Heart Care</p>
+  <p><b>Dr. Meena</b> – General Physician</p>
+  <p><b>Dr. Kumar</b> – Orthopedic</p>
+  <button class="secondary" onclick="goDashboard()">Back</button>
+</div>
+
+<!-- RECEIPT -->
+<div class="card hide" id="receipt">
+  <h3>Digital Appointment Receipt</h3>
+  <div id="receiptData" class="receipt-box"></div>
+  <button onclick="downloadReceipt()">Download Receipt</button>
+  <button class="secondary" onclick="goDashboard()">Go to Dashboard</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
