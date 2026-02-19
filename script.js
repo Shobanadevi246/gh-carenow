@@ -2,19 +2,19 @@ function hideAll(){
   document.querySelectorAll(".card").forEach(c=>c.classList.add("hide"));
 }
 
-function goLogin(){ hideAll(); login.classList.remove("hide"); }
-function goSignup(){ hideAll(); signup.classList.remove("hide"); }
-function goForgot(){ hideAll(); forgot.classList.remove("hide"); }
-function goDashboard(){ hideAll(); dashboard.classList.remove("hide"); }
+function goLogin(){ hideAll(); document.getElementById("login").classList.remove("hide"); }
+function goSignup(){ hideAll(); document.getElementById("signup").classList.remove("hide"); }
+function goForgot(){ hideAll(); document.getElementById("forgot").classList.remove("hide"); }
+function goDashboard(){ hideAll(); document.getElementById("dashboard").classList.remove("hide"); }
 function openPage(id){ hideAll(); document.getElementById(id).classList.remove("hide"); }
 
-// AUTO TIME SLOT
+// Auto time slot
 function autoTimeSlot(){
   let slots=["10:00 AM","10:30 AM","11:00 AM","11:30 AM"];
   return slots[Math.floor(Math.random()*slots.length)];
 }
 
-// DOCTOR DETAILS
+// Doctor details
 function getDoctorDetails(){
   let doctors=[
     {name:"Dr. Ravi",room:"Room 12",ward:"Ward A"},
@@ -24,35 +24,50 @@ function getDoctorDetails(){
   return doctors[Math.floor(Math.random()*doctors.length)];
 }
 
-// AI EMERGENCY
+// Emergency logic
 function isEmergency(issue,checked){
   return checked || issue.toLowerCase().includes("chest");
 }
 
-// DOCTOR BOOKING
+// Doctor booking
 function bookDoctor(){
-  let issue=healthIssue.value;
-  let emergency=emergency.checked;
-  let date=appDate.value;
+  let issue=document.getElementById("healthIssue").value;
+  let emergencyChecked=document.getElementById("emergency").checked;
+  let date=document.getElementById("appDate").value;
+
+  if(date===""){
+    alert("Please select appointment date");
+    return;
+  }
+
   let time=autoTimeSlot();
-  let priority=isEmergency(issue,emergency)?"EMERGENCY":"NORMAL";
+  let priority=isEmergency(issue,emergencyChecked)?"EMERGENCY":"NORMAL";
+
   showReceipt("Doctor Appointment",date,time,priority);
 }
 
-// SCAN BOOKING
+// Scan booking
 function bookScan(){
-  let date=scanDate.value;
-  let priority=scanEmergency.checked?"EMERGENCY":"NORMAL";
+  let date=document.getElementById("scanDate").value;
+  let emergencyChecked=document.getElementById("scanEmergency").checked;
+
+  if(date===""){
+    alert("Please select scan date");
+    return;
+  }
+
   let time=autoTimeSlot();
+  let priority=emergencyChecked?"EMERGENCY":"NORMAL";
+
   showReceipt("Scan Booking",date,time,priority);
 }
 
-// RECEIPT
+// Show receipt
 function showReceipt(type,date,time,priority){
   let receiptNo="GH"+Math.floor(Math.random()*1000000);
   let doctor=getDoctorDetails();
 
-  receiptData.innerHTML=`
+  document.getElementById("receiptData").innerHTML=`
     <p><b>Receipt No:</b> ${receiptNo}</p>
     <p><b>Booking Type:</b> ${type}</p>
     <p><b>Doctor Name:</b> ${doctor.name}</p>
@@ -65,12 +80,13 @@ function showReceipt(type,date,time,priority){
   `;
 
   hideAll();
-  receipt.classList.remove("hide");
+  document.getElementById("receipt").classList.remove("hide");
 }
 
-// DOWNLOAD RECEIPT
+// Download receipt
 function downloadReceipt(){
-  let blob=new Blob([receiptData.innerText],{type:"text/plain"});
+  let content=document.getElementById("receiptData").innerText;
+  let blob=new Blob([content],{type:"text/plain"});
   let link=document.createElement("a");
   link.href=URL.createObjectURL(blob);
   link.download="CareNowGH_Appointment_Receipt.txt";
